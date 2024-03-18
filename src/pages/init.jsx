@@ -74,7 +74,7 @@ const InitPage = () => {
                 }}
                 transition={{ duration: 1, delay: 1 }}
             >
-                "Relaja tu cuerpo, libera tu mente y conecta con tu energía interior"
+                &quot;Relaja tu cuerpo, libera tu mente y conecta con tu energía interior&quot;
             </motion.p>
             
             <motion.img
