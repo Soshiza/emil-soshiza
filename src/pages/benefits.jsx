@@ -1,9 +1,10 @@
 'use client';
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Lora } from "next/font/google";
+import Image from "next/image";
 
 const lora = Lora({
   family: "Lora",
@@ -12,21 +13,34 @@ const lora = Lora({
   display: "swap",
 });
 
+const imageFiles = ["/masajes1.webp", "/reiki.webp", "/yoga.webp"];
+
 const BenefitsPage = () => {
-  // Crear referencia y estado de visibilidad para las tarjetas
-  const [refCards, inViewCards] = useInView({
+  const [titleRef, titleInView] = useInView({
     triggerOnce: true,
     rootMargin: "-100px",
   });
 
-  // Nombres de archivo de imágenes para cada categoría
-  const imageFiles = ["masajes1.webp", "reiki.webp", "yoga.webp"];
+  const [subtitleRef, subtitleInView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-100px",
+  });
+
+  const [additionalTextRef, additionalTextView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-100px",
+  });
+
+  const [cardsRef, cardsInView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-100px",
+  });
 
   return (
     <div className="flex justify-center items-center h-auto">
       <div className="flex flex-col space-y-8">
         <motion.h1
-          ref={refCards}
+          ref={titleRef}
           className={lora.className}
           style={{
             fontSize: "38px",
@@ -34,13 +48,14 @@ const BenefitsPage = () => {
             color: "#808000",
             textAlign: "center",
           }}
-          animate={{ opacity: inViewCards ? 1 : 0, y: inViewCards ? 0 : 50 }}
+          animate={{ opacity: titleInView ? 1 : 0, y: titleInView ? 0 : 50 }}
           transition={{ duration: 0.5 }}
         >
           Beneficios de la Masoterapia, Reiki y Hatha Yoga
         </motion.h1>
 
         <motion.p
+          ref={subtitleRef}
           className={lora.className}
           style={{
             fontSize: "15px",
@@ -49,7 +64,7 @@ const BenefitsPage = () => {
             color: "#B9A88F",
             textAlign: "center",
           }}
-          animate={{ opacity: inViewCards ? 1 : 0, y: inViewCards ? 0 : 50 }}
+          animate={{ opacity: subtitleInView ? 1 : 0, y: subtitleInView ? 0 : 50 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           Las prácticas de Masoterapia, Reiki y Hatha Yoga ofrecen una amplia
@@ -58,20 +73,20 @@ const BenefitsPage = () => {
           trabajan juntas para mejorar el bienestar físico, mental y emocional.
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {["Masoterapia", "Reiki", "Hatha Yoga"].map((title, index) => {
-            return (
-              <Card
-                key={index}
-                title={title}
-                imageFile={imageFiles[index]}
-                delay={0.4 + index * 0.2}
-              />
-            );
-          })}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4" ref={cardsRef}>
+          {["Masoterapia", "Reiki", "Hatha Yoga"].map((title, index) => (
+            <Card
+              key={index}
+              title={title}
+              index={index}
+              cardsInView={cardsInView}
+              imageFile={imageFiles[index]}
+            />
+          ))}
         </div>
 
         <motion.p
+          ref={additionalTextRef}
           className={lora.className}
           style={{
             fontSize: "15px",
@@ -80,7 +95,7 @@ const BenefitsPage = () => {
             color: "#B9A88F",
             textAlign: "center",
           }}
-          animate={{ opacity: inViewCards ? 1 : 0, y: inViewCards ? 0 : 50 }}
+          animate={{ opacity: additionalTextView ? 1 : 0, y: additionalTextView ? 0 : 50 }}
           transition={{ duration: 0.5, delay: 1.2 }}
         >
           La combinación de Masoterapia, Reiki y Hatha Yoga puede ayudarte a
@@ -102,27 +117,31 @@ const BenefitsPage = () => {
   );
 };
 
-// Componente de tarjeta individual
-const Card = ({ title, imageFile, delay }) => {
+const Card = ({ title, index, cardsInView, imageFile }) => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     rootMargin: "-100px",
   });
 
+  const delay = 0.4 + index * 0.2;
+
   return (
     <motion.div
       className="bg-white rounded-lg shadow-sm px-6 py-4"
       ref={ref}
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
-      transition={{ duration: 0.5, delay: delay }}
+      animate={{ opacity: inView && cardsInView ? 1 : 0, y: inView && cardsInView ? 0 : 50 }}
+      transition={{ duration: 0.5, delay }}
     >
-      <img
-        className="w-full rounded-md mx-2 my-2"
-        src={imageFile}
-        alt={title}
-      />
-      <motion.h2
+      <div style={{ position: "relative", width: "100%", height: "300px" }}>
+        <Image
+          src={imageFile}
+          alt={title}
+          layout="fill"
+          objectFit="cover"
+          className="rounded-md"
+        />
+      </div>
+      <h2
         className={lora.className}
         style={{
           fontSize: "20px",
@@ -131,11 +150,9 @@ const Card = ({ title, imageFile, delay }) => {
           fontWeight: "bold",
           marginBottom: "10px",
         }}
-        animate={{ opacity: inView ? 1 : 0 }}
-        transition={{ duration: 0.5, delay: delay }}
       >
         Beneficios de {title}
-      </motion.h2>
+      </h2>
 
       <ul
         className={`${lora.className} list-disc`}
