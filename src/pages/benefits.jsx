@@ -2,7 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { useInView as useInView1 } from 'react-intersection-observer';
+import { useInView as useInView2 } from 'react-intersection-observer';
+import { useInView as useInView3 } from 'react-intersection-observer';
 import { Lora } from "next/font/google";
 
 const lora = Lora({
@@ -13,20 +15,20 @@ const lora = Lora({
 });
 
 const BenefitsPage = () => {
-  const [ref1, inView1] = useInView({
-    triggerOnce: true,
-    rootMargin: "-100px",
-  });
-
-  const [ref2, inView2] = useInView({
-    triggerOnce: true,
-    rootMargin: "-100px",
-  });
-
-  const [ref3, inView3] = useInView({
-    triggerOnce: true,
-    rootMargin: "-100px",
-  });
+    const [ref1, inView1] = useInView1({
+      triggerOnce: true,
+      rootMargin: "-100px",
+    });
+  
+    const [ref2, inView2] = useInView2({
+      triggerOnce: true,
+      rootMargin: "-100px",
+    });
+  
+    const [ref3, inView3] = useInView3({
+      triggerOnce: true,
+      rootMargin: "-100px",
+    });
 
   // Nombres de archivo de imágenes para cada categoría
   const imageFiles = ["masajes1.webp", "reiki.webp", "yoga.webp"];
