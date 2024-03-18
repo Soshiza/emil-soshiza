@@ -2,9 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { useInView as useInView1 } from 'react-intersection-observer';
-import { useInView as useInView2 } from 'react-intersection-observer';
-import { useInView as useInView3 } from 'react-intersection-observer';
+import { useInView as useInViewHook1 } from 'react-intersection-observer';
+import { useInView as useInViewHook2 } from 'react-intersection-observer';
+import { useInView as useInViewHook3 } from 'react-intersection-observer';
 import { Lora } from "next/font/google";
 
 const lora = Lora({
@@ -15,17 +15,17 @@ const lora = Lora({
 });
 
 const BenefitsPage = () => {
-    const [ref1, inView1] = useInView1({
+    const [ref1, inView1] = useInViewHook1({
       triggerOnce: true,
       rootMargin: "-100px",
     });
   
-    const [ref2, inView2] = useInView2({
+    const [ref2, inView2] = useInViewHook2({
       triggerOnce: true,
       rootMargin: "-100px",
     });
   
-    const [ref3, inView3] = useInView3({
+    const [ref3, inView3] = useInViewHook3({
       triggerOnce: true,
       rootMargin: "-100px",
     });
@@ -77,7 +77,7 @@ const BenefitsPage = () => {
         {/* Tarjetas */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {["Masoterapia", "Reiki", "Hatha Yoga"].map((title, index) => {
-            const [ref, inView] = useInView({
+            const [ref, inView] = useInViewHook1({
               triggerOnce: true,
               rootMargin: "-100px",
             });
