@@ -13,18 +13,8 @@ const lora = Lora({
 });
 
 const BenefitsPage = () => {
-  // Crear referencias y estados de visibilidad para el título, subtítulo y texto adicional
-  const [refTitle, inViewTitle] = useInView({
-    triggerOnce: true,
-    rootMargin: "-100px",
-  });
-
-  const [refSubtitle, inViewSubtitle] = useInView({
-    triggerOnce: true,
-    rootMargin: "-100px",
-  });
-
-  const [refAdditionalText, inViewAdditionalText] = useInView({
+  // Crear referencia y estado de visibilidad para las tarjetas
+  const [refCards, inViewCards] = useInView({
     triggerOnce: true,
     rootMargin: "-100px",
   });
@@ -35,9 +25,8 @@ const BenefitsPage = () => {
   return (
     <div className="flex justify-center items-center h-auto">
       <div className="flex flex-col space-y-8">
-        {/* Título */}
         <motion.h1
-          ref={refTitle}
+          ref={refCards}
           className={lora.className}
           style={{
             fontSize: "38px",
@@ -45,15 +34,13 @@ const BenefitsPage = () => {
             color: "#808000",
             textAlign: "center",
           }}
-          animate={{ opacity: inViewTitle ? 1 : 0, y: inViewTitle ? 0 : 50 }}
+          animate={{ opacity: inViewCards ? 1 : 0, y: inViewCards ? 0 : 50 }}
           transition={{ duration: 0.5 }}
         >
           Beneficios de la Masoterapia, Reiki y Hatha Yoga
         </motion.h1>
 
-        {/* Subtítulo */}
         <motion.p
-          ref={refSubtitle}
           className={lora.className}
           style={{
             fontSize: "15px",
@@ -62,7 +49,7 @@ const BenefitsPage = () => {
             color: "#B9A88F",
             textAlign: "center",
           }}
-          animate={{ opacity: inViewSubtitle ? 1 : 0, y: inViewSubtitle ? 0 : 50 }}
+          animate={{ opacity: inViewCards ? 1 : 0, y: inViewCards ? 0 : 50 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           Las prácticas de Masoterapia, Reiki y Hatha Yoga ofrecen una amplia
@@ -71,73 +58,20 @@ const BenefitsPage = () => {
           trabajan juntas para mejorar el bienestar físico, mental y emocional.
         </motion.p>
 
-        {/* Tarjetas */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {["Masoterapia", "Reiki", "Hatha Yoga"].map((title, index) => {
-            // Crear referencias y estado de visibilidad para cada tarjeta
-            const [refCard, inViewCard] = useInView({
-              triggerOnce: true,
-              rootMargin: "-100px",
-            });
-
             return (
-              <motion.div
+              <Card
                 key={index}
-                className="bg-white rounded-lg shadow-sm px-6 py-4"
-                ref={refCard}
-                animate={{ opacity: inViewCard ? 1 : 0, y: inViewCard ? 0 : 50 }}
-                transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
-              >
-                <img
-                  className="w-full rounded-md mx-2 my-2"
-                  src={imageFiles[index]} // Utilizando el nombre de archivo correspondiente
-                  alt={title}
-                />
-                <motion.h2
-                  className={lora.className}
-                  style={{
-                    fontSize: "20px",
-                    fontStyle: "italic",
-                    color: "#808000",
-                    fontWeight: "bold",
-                    marginBottom: "10px",
-                  }}
-                  animate={{ opacity: inViewCard ? 1 : 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 + index * 0.2 }}
-                >
-                  Beneficios de {title}
-                </motion.h2>
-
-                <ul
-                  className={`${lora.className} list-disc`}
-                  style={{
-                    fontSize: "15px",
-                    fontStyle: "italic",
-                    color: "#B9A88F",
-                    marginBottom: "10px",
-                    paddingLeft: "1rem",
-                  }}
-                >
-                  {[
-                    "Mejora la circulación sanguínea y linfática.",
-                    "Reduce la tensión muscular y el dolor.",
-                    "Mejora la flexibilidad y el rango de movimiento.",
-                    "Acelera la recuperación de lesiones.",
-                    "Reduce el estrés y la ansiedad.",
-                    "Mejora la calidad del sueño.",
-                    "Fortalece el sistema inmunológico."
-                  ].map((benefit, index) => (
-                    <li key={index}>{benefit}</li>
-                  ))}
-                </ul>
-              </motion.div>
+                title={title}
+                imageFile={imageFiles[index]}
+                delay={0.4 + index * 0.2}
+              />
             );
           })}
         </div>
 
-        {/* Texto adicional */}
         <motion.p
-          ref={refAdditionalText}
           className={lora.className}
           style={{
             fontSize: "15px",
@@ -146,7 +80,7 @@ const BenefitsPage = () => {
             color: "#B9A88F",
             textAlign: "center",
           }}
-          animate={{ opacity: inViewAdditionalText ? 1 : 0, y: inViewAdditionalText ? 0 : 50 }}
+          animate={{ opacity: inViewCards ? 1 : 0, y: inViewCards ? 0 : 50 }}
           transition={{ duration: 0.5, delay: 1.2 }}
         >
           La combinación de Masoterapia, Reiki y Hatha Yoga puede ayudarte a
@@ -155,7 +89,6 @@ const BenefitsPage = () => {
           prácticas son una excelente opción.
         </motion.p>
 
-        {/* Enlace */}
         <div className="flex justify-center mt-4">
           <a
             href="#contacto"
@@ -166,6 +99,67 @@ const BenefitsPage = () => {
         </div>
       </div>
     </div>
+  );
+};
+
+// Componente de tarjeta individual
+const Card = ({ title, imageFile, delay }) => {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: "-100px",
+  });
+
+  return (
+    <motion.div
+      className="bg-white rounded-lg shadow-sm px-6 py-4"
+      ref={ref}
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: inView ? 1 : 0, y: inView ? 0 : 50 }}
+      transition={{ duration: 0.5, delay: delay }}
+    >
+      <img
+        className="w-full rounded-md mx-2 my-2"
+        src={imageFile}
+        alt={title}
+      />
+      <motion.h2
+        className={lora.className}
+        style={{
+          fontSize: "20px",
+          fontStyle: "italic",
+          color: "#808000",
+          fontWeight: "bold",
+          marginBottom: "10px",
+        }}
+        animate={{ opacity: inView ? 1 : 0 }}
+        transition={{ duration: 0.5, delay: delay }}
+      >
+        Beneficios de {title}
+      </motion.h2>
+
+      <ul
+        className={`${lora.className} list-disc`}
+        style={{
+          fontSize: "15px",
+          fontStyle: "italic",
+          color: "#B9A88F",
+          marginBottom: "10px",
+          paddingLeft: "1rem",
+        }}
+      >
+        {[
+          "Mejora la circulación sanguínea y linfática.",
+          "Reduce la tensión muscular y el dolor.",
+          "Mejora la flexibilidad y el rango de movimiento.",
+          "Acelera la recuperación de lesiones.",
+          "Reduce el estrés y la ansiedad.",
+          "Mejora la calidad del sueño.",
+          "Fortalece el sistema inmunológico."
+        ].map((benefit, index) => (
+          <li key={index}>{benefit}</li>
+        ))}
+      </ul>
+    </motion.div>
   );
 };
 
