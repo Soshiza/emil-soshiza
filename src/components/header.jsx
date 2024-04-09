@@ -4,6 +4,8 @@ import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Dancing_Script } from "@next/font/google";
+import Link from 'next/link';
+
 
 const dancing = Dancing_Script({
   family: "Dancing Script",
@@ -121,9 +123,9 @@ const Header = () => {
             </a>
           </li>
           <li>
-            <a href="/booking" className="hover:text-orange-soft">
+            <Link href="/booking" className="hover:text-orange-soft">
               Reservacion
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -180,9 +182,9 @@ const Header = () => {
                 </a>
               </li>
               <li className="mb-2">
-                <a href="/booking" className="hover:text-orange-soft">
+                <Link href="/booking" className="hover:text-orange-soft">
                   Reservacion
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>
