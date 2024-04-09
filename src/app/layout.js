@@ -4,7 +4,7 @@ import "./globals.css";
 
 
 export const metadata = {
-  title: "Anotonio Emil Muñoz",
+  title: "Antonio Emil Muñoz",
   description: "Instructor yoga,",
 };
 

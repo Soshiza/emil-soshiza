@@ -5,24 +5,24 @@ import Image from 'next/image';
 const SocialButtons = () => {
   return (
     <div className="flex justify-center">
-      <div className="flex items-center ml-6 z-50 my-10">
+      <div className="flex items-center ml-6 z-40 my-10">
         <SocialButton
-          href="https://www.facebook.com/yourusername"
+          href="https://web.facebook.com/antonio.munoz.54?mibextid=qi2Omg"
           icon="/facebook.png"
           label="Facebook"
         />
         <SocialButton
-          href="https://www.instagram.com/yourusername"
+          href="https://www.instagram.com/antonio_emil/"
           icon="/instagram.png"
           label="Instagram"
         />
         <SocialButton
-          href="https://www.tiktok.com/yourusername"
+          href="https://www.tiktok.com/@antonio.emil2?_t=8lH74CcD1bK&_r=1"
           icon="/tik-tok.png"
           label="TikTok"
         />
         <SocialButton
-          href="#"
+          href="https://wa.me/56954196348"
           icon="/whatsapp.png"
           label="WhatsApp"
         />

@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaArrowLeft } from "react-icons/fa";
 import { Dancing_Script } from "@next/font/google";
 
 const dancing = Dancing_Script({
@@ -12,7 +12,7 @@ const dancing = Dancing_Script({
   display: "swap",
 });
 
-const Header = () => {
+const Header2 = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -77,52 +77,11 @@ const Header = () => {
         <ul className="md:flex items-center space-x-4">
           <li>
             <a
-              href="#inicio"
+              href="/"
               className="hover:text-orange-soft"
               onClick={closeMenu}
             >
-              Inicio
-            </a>
-          </li>
-          <li>
-            <a
-              href="#beneficios"
-              className="hover:text-orange-soft"
-              onClick={(event) => smoothScroll(event, "beneficios")}
-            >
-              Beneficios
-            </a>
-          </li>
-          <li>
-            <a
-              href="#acerca-de-mi"
-              className="hover:text-orange-soft"
-              onClick={(event) => smoothScroll(event, "acerca-de-mi")}
-            >
-              About
-            </a>
-          </li>
-          <li>
-            <a
-              href="#servicios"
-              className="hover:text-orange-soft"
-              onClick={(event) => smoothScroll(event, "servicios")}
-            >
-              Servicios
-            </a>
-          </li>
-          <li>
-            <a
-              href="#contacto"
-              className="hover:text-orange-soft"
-              onClick={(event) => smoothScroll(event, "contacto")}
-            >
-              Contacto
-            </a>
-          </li>
-          <li>
-            <a href="/booking" className="hover:text-orange-soft">
-              Reservacion
+              <FaArrowLeft /> {/* Icono de Volver */}
             </a>
           </li>
         </ul>
@@ -136,52 +95,11 @@ const Header = () => {
             <ul>
               <li className="mb-2">
                 <a
-                  href="#inicio"
+                  href="/"
                   className="hover:text-orange-soft"
                   onClick={closeMenu}
                 >
-                  Inicio
-                </a>
-              </li>
-              <li className="mb-2">
-                <a
-                  href="#beneficios"
-                  className="hover:text-orange-soft"
-                  onClick={(event) => smoothScroll(event, "beneficios")}
-                >
-                  Beneficios
-                </a>
-              </li>
-              <li className="mb-2">
-                <a
-                  href="#acerca-de-mi"
-                  className="hover:text-orange-soft"
-                  onClick={(event) => smoothScroll(event, "acerca-de-mi")}
-                >
-                  About
-                </a>
-              </li>
-              <li className="mb-2">
-                <a
-                  href="#servicios"
-                  className="hover:text-orange-soft"
-                  onClick={(event) => smoothScroll(event, "servicios")}
-                >
-                  Servicios
-                </a>
-              </li>
-              <li className="mb-2">
-                <a
-                  href="#contacto"
-                  className="hover:text-orange-soft"
-                  onClick={(event) => smoothScroll(event, "contacto")}
-                >
-                  Contacto
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="/booking" className="hover:text-orange-soft">
-                  Reservacion
+                  <FaArrowLeft /> {/* Icono de Volver */}
                 </a>
               </li>
             </ul>
@@ -192,4 +110,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Header2;

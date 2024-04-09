@@ -8,7 +8,8 @@ module.exports = {
   theme: {
     colors: {
      'olive': '#808000',
-     'orange-soft': '#FFCC99'
+     'orange-soft': '#FFCC99',
+     'rose-pale': '#FFE6E6',
     },
   },
   plugins: [],

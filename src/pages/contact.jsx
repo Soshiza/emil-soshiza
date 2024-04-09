@@ -170,7 +170,7 @@ const EmailFormContent = ({
         value={phone}
         onChange={(e) => setPhone(e.target.value)}
         required
-        placeholder="Número de teléfono"
+        placeholder="N° teléfono"
         className="phone-input"
       />
     </div>

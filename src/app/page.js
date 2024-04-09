@@ -1,6 +1,6 @@
 import Header from "@/components/header";
 import AboutPage from "@/pages/about";
-import InitPage from "@/pages/init";
+import InitPage from "../pages/init";
 import BenefitsPage from "@/pages/benefits";
 import ServicesPage from "@/pages/services";
 import EmailForm from "@/pages/contact";
