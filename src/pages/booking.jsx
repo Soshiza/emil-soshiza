@@ -12,7 +12,7 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { es } from "date-fns/locale";
 import Image from "next/image";
-import Header2 from '@/components/Header2';
+import Header2 from '../components/header2'
 
 
 const UID = process.env.NEXT_PUBLIC_FIREBASE_UID;
