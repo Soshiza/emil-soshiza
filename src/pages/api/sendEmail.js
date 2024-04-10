@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
     await transporter.sendMail({
         from: process.env.GMAIL_EMAIL,
-        to: 'soshiza.agency@gmail.com',
+        to: 'anto.emumozm@gmail.com',
         subject,
         text: message,
     });
