@@ -19,7 +19,7 @@ const InitPage = () => {
     }, [controls]);
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen  mt-0">
+        <div className="flex flex-col items-center justify-center h-screen mt-14">
             <motion.h1
                 className={lora.className}
                 style={{
@@ -78,7 +78,7 @@ const InitPage = () => {
             </motion.p>
             
             <motion.img
-                className="w-auto h-auto mb-4 sm:w-96 md:w-1/2 lg:w-1/3 rounded-lg"
+                className="w-auto h-auto mb-4 sm:w-96 md:w-1/2 lg:w-1/2 rounded-lg"
                 src="/portada.webp"
                 alt="Antonio Emil Muñoz"
                 initial={{ y: -100, opacity: 0 }}

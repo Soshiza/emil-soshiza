@@ -22,7 +22,7 @@ const AboutPage = () => {
     <div className="p-8 rounded-lg flex flex-col lg:flex-row lg:items-center">
       <motion.img
         ref={ref}
-        src="portada.webp"
+        src="aboutme.webp"
         alt="Antonio Muñoz"
         className="w-80 h-96 rounded-lg lg:mr-8 lg:flex-shrink-0 mx-auto"
         initial={{ opacity: 0, y: 50 }}
